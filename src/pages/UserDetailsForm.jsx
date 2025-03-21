@@ -59,9 +59,12 @@ const UserDetailsForm = () => {
                 gender: userData.gender,
                 university: userData.university,
                 interestedIn: userData.interestedIn,
-                prompts: userData.prompts,
+                prompts: Object.values(userData.prompts)?.length > 0 ? userData.prompts : {
+                    "Fun Fact": "",
+                    "Weekend Plan": "",
+                },
                 bio: userData.bio,
-                photos: userData.photos
+                photos: userData.photos?.length > 0 ? userData.photos : []
             })
 
         };
