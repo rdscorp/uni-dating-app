@@ -10,6 +10,7 @@ const ChatPage = () => {
     const [matches, setMatches] = useState([]);
     const [unreadCounts, setUnreadCounts] = useState({});
     const [likeCount, setLikeCount] = useState(0);
+    const [matchCount, setMatchCount] = useState(0);
     const [FBUser, setFBUser] = useState(null);
 
     useEffect(() => {
@@ -34,6 +35,7 @@ const ChatPage = () => {
 
             const userData = userSnap.data();
             setLikeCount(userData.likedBy?.length || 0);
+            setMatchCount(userData.matches?.length || 0);
         };
 
         fetchUserLikes();
@@ -96,7 +98,7 @@ const ChatPage = () => {
                 cursor: 'pointer'
             }} onClick={() => window.location.href = '/home'} className="app-logo-left" />
             <div className="buttons-div-top">
-                <a href="/setup-profile" className="likes-button" style={{
+                <a href="/likes" className="likes-button" style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -105,7 +107,7 @@ const ChatPage = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                }}><FcSms size={30} /></a></div>
+                }}><FcSms size={30} />{matchCount ? matchCount : null}</a></div>
             <h2 className="title2">Your Matches</h2>
             <div style={{
                 height: '55vh', display: 'flex', gap: '0.5em', flexWrap: 'wrap',

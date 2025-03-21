@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, db } from "../firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import useUserStore from "../store/useUserStore";
 import uNiLogo from "../assets/uNi.png";
 import Logout from "../components/Auth/Logout";
+import { FcLike, FcSettings, FcSms } from "react-icons/fc";
 
 const UserDetailsForm = () => {
     const { user } = useUserStore();
@@ -24,6 +25,49 @@ const UserDetailsForm = () => {
 
     const storage = getStorage();
     const [successMessage, setSuccessMessage] = useState("");
+    const [likeCount, setLikeCount] = useState(0);
+    const [matchCount, setMatchCount] = useState(0);
+    const [FBUser, setFBUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
+            if (firebaseUser) {
+                setFBUser({ uid: firebaseUser.uid });
+            } else {
+                setFBUser(null);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    useEffect(() => {
+        if (!FBUser) return;
+
+        const fetchUserLikes = async () => {
+            const userRef = doc(db, "users", FBUser.uid);
+            const userSnap = await getDoc(userRef);
+            if (!userSnap.exists()) return;
+
+            const userData = userSnap.data();
+
+            setLikeCount(userData.likedBy?.length || 0);
+            setMatchCount(userData.matches?.length || 0);
+
+            setFormData({
+                age: userData.age,
+                gender: userData.gender,
+                university: userData.university,
+                interestedIn: userData.interestedIn,
+                prompts: userData.prompts,
+                bio: userData.bio,
+                photos: userData.photos
+            })
+
+        };
+
+        fetchUserLikes();
+    }, [FBUser]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -72,7 +116,7 @@ const UserDetailsForm = () => {
             }, { merge: true });
 
             setSuccessMessage("Profile Updated Successfully!");
-            setTimeout(() => setSuccessMessage(""), 3000); // Hide message after 3s
+            setTimeout(() => { setSuccessMessage(""); window.location.href = "/home"; }, 1000); // Hide message after 3s
         } catch (error) {
             console.error("Error saving user details:", error);
         }
@@ -81,10 +125,35 @@ const UserDetailsForm = () => {
     return (
         <div className="app-container">
             {/* Logo */}
-            <a href="/home"><img src={uNiLogo} className="app-logo" /></a>
-
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                <h2 className="title2">Complete Your Profile</h2>
+            <img src={uNiLogo} onClick={() => { window.location.href = '/home' }} className="app-logo-left" />
+            {/* Top navigation buttons */}
+            <div className="buttons-div-top">
+                <a href="/likes" className="likes-button" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+                    <FcLike size={30} />{likeCount ? likeCount : null}
+                </a>
+                <a href="/chats" className="chats-button" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+                    <FcSms size={30} />{matchCount ? matchCount : null}
+                </a>
+            </div>
+            <h2 className="title2">Complete Your Profile</h2>
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '75vh',
+                width: '90%',
+                overflow: 'auto',
+                background: '#303030',
+                padding: '20px',
+                borderRadius: '10px'
+            }}>
 
                 {successMessage && (
                     <div className="alert">
@@ -203,6 +272,27 @@ const UserDetailsForm = () => {
                         Save & Continue
                     </button>
                 </form>
+            </div>
+            {/* Footer */}
+            <h1 className="title4" style={{ marginTop: "5rem", color: '#909090' }}>
+                FAQ • CONTACT • GUIDELINES
+            </h1>
+            <p className="links" style={{ marginTop: "0.5rem", marginBottom: '1rem' }}>
+                <span className="link">Privacy Policy</span> • <span className="link">Terms & Conditions</span>
+                <br />
+                Copyright © 2025 RDS Corp. All rights reserved
+            </p>
+
+            {/* Bottom navigation buttons */}
+            <div className="buttons-div">
+                <a href="/setup-profile" className="settings-button" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+                    <FcSettings size={30} />Settings
+                </a>
+                <Logout />
             </div>
         </div>
     );

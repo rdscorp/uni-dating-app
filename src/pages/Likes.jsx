@@ -10,6 +10,7 @@ const Likes = () => {
     const [profiles, setProfiles] = useState([]);
     const [user, setUser] = useState(null);
     const [likeCount, setLikeCount] = useState(0);
+    const [matchCount, setMatchCount] = useState(0);
     const [FBUser, setFBUser] = useState(null);
 
     useEffect(() => {
@@ -34,6 +35,7 @@ const Likes = () => {
 
             const userData = userSnap.data();
             setLikeCount(userData.likedBy?.length || 0);
+            setMatchCount(userData.matches?.length || 0);
 
             if (userData.likedBy?.length) {
                 // Fetch details of users who liked the current user
@@ -66,7 +68,7 @@ const Likes = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                }}><FcSms size={30} /></a></div>
+                }}><FcSms size={30} />{matchCount ? matchCount : null}</a></div>
             <h2 className="title2">Liked You</h2>
 
             <div className="profile-list" style={{

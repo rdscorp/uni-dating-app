@@ -14,6 +14,9 @@ const ChatBox = () => {
     const [matchDetails, setMatchDetails] = useState(null);
     const chatEndRef = useRef(null); // Auto-scroll reference
 
+    const [likeCount, setLikeCount] = useState(0);
+    const [matchCount, setMatchCount] = useState(0);
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
             if (firebaseUser) {
@@ -25,6 +28,22 @@ const ChatBox = () => {
 
         return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+        if (!FBUser) return;
+
+        const fetchUserLikes = async () => {
+            const userRef = doc(db, "users", FBUser.uid);
+            const userSnap = await getDoc(userRef);
+            if (!userSnap.exists()) return;
+
+            const userData = userSnap.data();
+            setLikeCount(userData.likedBy?.length || 0);
+            setMatchCount(userData.matches?.length || 0);
+        };
+
+        fetchUserLikes();
+    }, [FBUser]);
 
     useEffect(() => {
         if (!FBUser) return;
@@ -85,8 +104,8 @@ const ChatBox = () => {
             {/* Logo & Top Buttons */}
             <img src={uNiLogo} style={{ cursor: 'pointer' }} onClick={() => window.location.href = '/home'} className="app-logo-left" />
             <div className="buttons-div-top">
-                <a href="/setup-profile" className="likes-button"><FcLike size={30} /></a>
-                <a href="/chats" className="chats-button"><FcSms size={30} /></a>
+                <a href="/likes" className="likes-button"><FcLike size={30} />{likeCount ? likeCount : null}</a>
+                <a href="/chats" className="chats-button"><FcSms size={30} />{matchCount ? matchCount : null}</a>
             </div>
 
             {/* Match Info */}
