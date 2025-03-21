@@ -1,6 +1,13 @@
 {
-    "routes": [
-      { "src": "/(.*)", "dest": "/index.html" }
+    "headers": [
+      {
+        "source": "/assets/(.*).css",
+        "headers": [{ "key": "Content-Type", "value": "text/css" }]
+      },
+      {
+        "source": "/assets/(.*).js",
+        "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+      }
     ]
   }
   
