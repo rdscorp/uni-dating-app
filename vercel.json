@@ -1,6 +1,10 @@
 {
-    "routes": [
-      { "src": "/(.*)", "dest": "/index.html" }
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [{ "key": "Content-Type", "value": "text/html" }]
+      }
     ]
   }
   
