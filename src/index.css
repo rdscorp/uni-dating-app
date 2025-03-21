@@ -1,0 +1,409 @@
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: url('./assets//LeagueSpartan-Bold.otf') format('opentype');
+}
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 55vh;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+.match-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.match-photo-large {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.message {
+  max-width: 70%;
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.sent {
+  align-self: flex-end;
+  background-color: #179adb;
+}
+
+.received {
+  align-self: flex-start;
+  background-color: #f1f0f0;
+  color: black;
+}
+
+.input-container {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.input-container button {
+  margin-left: 10px;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+body{
+  background: linear-gradient(90deg, #89d4ff 20%, #ff4e4e 80%);
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button{
+  cursor: pointer;
+}
+.match-card{
+  width: 240px;
+  height: fit-content;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5em;
+  padding: 10px;
+}
+.match-photo{
+  height: 80px;
+  width: 80px;
+  border-radius: 100px;
+  object-fit: cover;
+  border: black 2px solid;
+}
+.match-name{
+  font-family: LeagueSpartan;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+}
+.app-container{
+  width: 50vw;
+  height: 87.5vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  border-radius: 25px;
+  overflow-y: auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  position: relative;
+}
+.app-logo{
+  height: 200px;
+  width: 200px;
+}
+.app-logo-left{
+  height: 100px;
+  width: 100px;
+  align-self: flex-start;
+  margin-left: 75px;
+  margin-bottom: 50px;
+}
+.buttons-div{
+  display: flex;
+  gap: 1em;
+}
+.buttons-div-top{
+  display: flex;
+  gap: 1em;
+  position: absolute;
+  right: 7.5%;
+  top: 7.5%;
+}
+.logout-button{
+  background-color: #8b0d0d90;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 0.8em;
+  border-radius: 50px;
+  width: 125px;
+  font-size: 14px;
+  gap: 0.25em;
+}
+.logout-button:hover{
+  background-color: #8b0d0dca;
+}
+.settings-button{
+  background-color: #0d3d8b90;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 0.8em;
+  border-radius: 50px;
+  width: 125px;
+  font-size: 14px;
+  gap: 0.25em;text-decoration: none;
+}
+.settings-button:hover{
+  background-color: #0d3d8bca;
+}
+.likes-button{
+  background-color: #8b0d5090;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 0.8em;
+  border-radius: 50px;
+  width: fit-content;
+  font-size: 14px;
+  gap: 0.25em;
+  text-decoration: none;
+}
+.likes-button:hover{
+  background-color: #8b0d50ca;
+}
+.chats-button{
+  background-color: #0d8b5d90;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 0.8em;
+  border-radius: 50px;
+  width: fit-content;
+  font-size: 14px;
+  gap: 0.25em;text-decoration: none;
+}
+.chats-button:hover{
+  background-color: #0d8b5dca;
+}
+.alert{
+  padding: 1em;
+  background-color: #ff4e4e;
+  border: 3px solid rgba(255, 255, 255, 0.557);
+  border-radius: 20px;
+  width: 300px;
+  height: 200px;
+  position: fixed;
+  align-self: center;
+}
+.title1{
+  font-family: 'LeagueSpartan', sans-serif;
+  font-size: 1.75em;
+}
+.title2{
+  font-family: 'LeagueSpartan', sans-serif;
+  font-size: 1.5em;
+}
+.title4{
+  font-family: 'LeagueSpartan', sans-serif;
+  font-size: 1em;
+}
+.bodytext1{
+  font-family: sans-serif;
+  font-size: 1em;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.input{
+  background-color: black;
+  color: white;
+  border: 1px solid rgb(130, 130, 130);
+  border-radius: 50px;
+  padding: 0.5em;
+  font-size: 1em;
+  text-indent: 0.5em;
+}
+.select{
+  background-color: black;
+  color: white;
+  border: 1px solid rgb(130, 130, 130);
+  border-radius: 50px;
+  padding: 0.5em;
+  font-size: 1em;
+  text-indent: 0.5em;
+}
+.textarea{
+  background-color: black;
+  color: white;
+  border: 1px solid rgb(130, 130, 130);
+  border-radius: 25px;
+  padding: 0.5em;
+  font-size: 1em;
+  text-indent: 0.5em;
+}
+.file-input{
+  background-color: black;
+  color: white;
+  border: 1px solid rgb(130, 130, 130);
+  border-radius: 50px;
+  padding: 0.5em;
+  font-size: 1em;
+  text-indent: 0.5em;
+}
+.images{
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.card{
+  width: 80%;
+  height: 55vh;
+  background-color: #89d4ff;
+  color: white;
+  border: 10px solid #89d4ff;
+  border-radius: 25px;
+  font-size: 1em;
+  overflow: hidden;
+  position: absolute;
+}
+.card-image{
+  width: 60%;
+  border-radius: 15px;
+  height: 55vh;
+  object-fit: cover;
+  position: absolute;
+  user-select: none;
+}
+.card-title{
+  bottom: 0;
+  padding: 1rem;
+  object-fit: cover;
+  position: absolute;
+  font-family: LeagueSpartan;
+  background-color: #000000bb;
+}
+.card-bio-container{
+  position: absolute;
+  left: 62.5%;
+  width: 35%;
+  padding-top: 15%;
+}
+.card-bio-gender{
+  font-family: LeagueSpartan;
+  font-size: 1em;
+  background-color: #000000bb;
+  border-radius: 50px;
+  padding: 0.5rem;
+  width: fit-content;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.card-bio-title{
+  font-family: LeagueSpartan;
+  font-size: 1em;
+}
+.card-bio{
+  font-family: LeagueSpartan;
+  font-size: 1.25em;
+}
+.btn-primary{
+  background-color: white;
+  color: black;
+  padding: 0.4em;
+  padding-right: 0.8em;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  font-size: 1.25em;
+}
+.btn-primary:hover{
+  opacity: 0.8;
+}
+
+.links{
+  color: rgb(120, 120, 120);
+  font-size: 13px;
+  text-align: center;
+  cursor: default;
+}
+
+.link:hover{
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+  .app-container{
+    width: 95vw;
+  }
+  .buttons-div-top{
+    display: flex;
+    gap: 0.5em;
+    position: absolute;
+    right: 5%;
+    top: 2.5%;
+  }
+  .app-logo-left{
+    height: 75px;
+    width: 75px;
+    align-self: flex-start;
+    margin-left: 20px;
+    margin-bottom: 50px;
+    margin-top: -30px;
+  }
+  .title1{
+    font-family: 'LeagueSpartan', sans-serif;
+    font-size: 1em;
+  }
+  .title4{
+    font-family: 'LeagueSpartan', sans-serif;
+    font-size: 0.75em;
+  }
+  .links{
+    font-size: 0.65em;
+  }
+  .card{
+    width: 80%;
+    height: 55vh;
+    background-color: #89d4ff;
+    color: white;
+    border: 10px solid #89d4ff;
+    border-radius: 25px;
+    font-size: 1em;
+    overflow: hidden;
+    position: absolute;
+    margin-top: 2rem;
+  }
+}
