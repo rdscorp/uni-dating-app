@@ -21,9 +21,9 @@ const App = () => {
             <Route path="/likes" element={<PrivateRoute><Likes /></PrivateRoute>} />
             <Route path="/chats" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
             <Route path="/chats/:chatSlug" element={<PrivateRoute><ChatBox /></PrivateRoute>} />
-            <Analytics />
           </Routes>
         </Router>
+        <Analytics />
       </AuthWrapper>
     </AuthProvider>
   );
