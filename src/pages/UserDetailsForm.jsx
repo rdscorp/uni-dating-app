@@ -218,6 +218,9 @@ const UserDetailsForm = () => {
                         className="select"
                     >
                         <option value="">Select University</option>
+                        <option value="muj">Manipal University, Jaipur</option>
+                        <option value="jecrc">JECRC University, Jaipur</option>
+                        <option value="lnmiit">LNMIIT, Jaipur</option>
                         <option value="bitjpr">Birla Institute of Technology, Jaipur</option>
                     </select>
 
