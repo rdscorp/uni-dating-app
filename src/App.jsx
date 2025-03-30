@@ -8,7 +8,7 @@ import UserDetailsForm from "./pages/UserDetailsForm";
 import Likes from "./pages/Likes";
 import ChatPage from "./pages/Chat";
 import ChatBox from "./pages/ChatBox"; // Import ChatBox
-
+import { Analytics } from "@vercel/analytics/react"
 const App = () => {
   return (
     <AuthProvider>
@@ -21,6 +21,7 @@ const App = () => {
             <Route path="/likes" element={<PrivateRoute><Likes /></PrivateRoute>} />
             <Route path="/chats" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
             <Route path="/chats/:chatSlug" element={<PrivateRoute><ChatBox /></PrivateRoute>} />
+            <Analytics />
           </Routes>
         </Router>
       </AuthWrapper>

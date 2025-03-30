@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.0.14",
+    "@vercel/analytics": "^1.5.0",
     "daisyui": "^5.0.6",
     "firebase": "^11.5.0",
     "framer-motion": "^12.5.0",
